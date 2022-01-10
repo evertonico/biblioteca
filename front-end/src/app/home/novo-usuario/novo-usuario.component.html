@@ -1,1 +1,21 @@
-<p>novo-usuario works!</p>
+<h4 class="text-center">Registre-se e se apresente para o mundo!</h4>
+
+<form class="form mt-4">
+  <div class="form-group">
+    <input type="text" placeholder="e-mail" class="form-control mb-3">
+  </div>
+  <div class="form-group">
+    <input type="text" placeholder="Nome completo" class="form-control mb-3">
+  </div>
+  <div class="form-group">
+    <input type="text" placeholder="Usuário" class="form-control mb-3">
+  </div>
+  <div class="form-group">
+    <input type="password" placeholder="Senha" class="form-control mb-3">
+  </div>
+  <div class="d-grid">
+    <button type="submit" class="btn btn-primary btn-block">Cadastro</button>
+  </div>
+</form>
+
+<p>Já é um usuário? <a [routerLink]="['']">Efetue login</a></p>
