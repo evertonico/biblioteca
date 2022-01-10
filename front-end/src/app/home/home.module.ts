@@ -7,12 +7,14 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { MensagemComponent } from '../componentes/mensagem/mensagem.component';
 import { MensagemModule } from '../componentes/mensagem/mensagem.module';
+import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    NovoUsuarioComponent
   ],
   imports: [
     CommonModule,
