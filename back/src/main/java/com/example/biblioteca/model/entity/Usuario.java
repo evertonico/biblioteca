@@ -40,4 +40,7 @@ public class Usuario {
 	@JsonIgnore
 	private String senha;	
 	
+	@Column(name="token")
+	private String token;	
+	
 }

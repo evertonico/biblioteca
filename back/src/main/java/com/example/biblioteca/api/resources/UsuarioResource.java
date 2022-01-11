@@ -1,6 +1,5 @@
 package com.example.biblioteca.api.resources;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,7 @@ public class UsuarioResource {
 	
 	private final UsuarioService usuarioService;
 	
-	@PostMapping
+	@PostMapping("/signup")
 	public ResponseEntity salvar(@RequestBody UsuarioDTO dto) {
 		Usuario usuario = converter(dto);
 		
