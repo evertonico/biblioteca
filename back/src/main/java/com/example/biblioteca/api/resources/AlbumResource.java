@@ -15,50 +15,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.biblioteca.api.dto.FilmeDTO;
+import com.example.biblioteca.api.dto.AlbumDTO;
 import com.example.biblioteca.exceptions.RegraNegocioException;
-import com.example.biblioteca.model.entity.Filme;
+import com.example.biblioteca.model.entity.Album;
 import com.example.biblioteca.model.entity.Usuario;
-import com.example.biblioteca.service.FilmeService;
+import com.example.biblioteca.service.AlbumService;
 import com.example.biblioteca.service.UsuarioService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/filmes")
+@RequestMapping("/api/albuns")
 @RequiredArgsConstructor
-public class FilmeResource {
+public class AlbumResource {
 	
-	private final FilmeService service;
+	private final AlbumService service;
 	private final UsuarioService usuarioService;
 	
 	@PostMapping
-	public ResponseEntity salvar(@RequestBody FilmeDTO dto) {
-		Filme filme = converter(dto);
+	public ResponseEntity salvar(@RequestBody AlbumDTO dto) {
+		Album album = converter(dto);
 		
 		try {
-			Filme filmeSalvo = service.salvarFilme(filme);
+			Album albumSalvo = service.salvarAlbum(album);
 
-			return new ResponseEntity(filmeSalvo, HttpStatus.CREATED);
+			return new ResponseEntity(albumSalvo, HttpStatus.CREATED);
 		} catch (RegraNegocioException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
 	
 	@PutMapping("{id}")
-	public ResponseEntity atualizar(@PathVariable("id") Long id,	@RequestBody FilmeDTO dto ) {
+	public ResponseEntity atualizar(@PathVariable("id") Long id,	@RequestBody AlbumDTO dto ) {
 
 		return service.obterPorId(id).map( entity -> {
-			Filme filme = converter(dto);
-			filme.setId(entity.getId());
+			Album album = converter(dto);
+			album.setId(entity.getId());
 			try {
-				service.atualizarFilme(filme);
-				return ResponseEntity.ok(filme);
+				service.atualizarAlbum(album);
+				return ResponseEntity.ok(album);
 			} catch (RegraNegocioException e) {
 				return ResponseEntity.badRequest().body(e.getMessage());
 			}
 
-		}).orElseGet( () -> new ResponseEntity("Filme não encontrado na base de dados", HttpStatus.BAD_REQUEST));
+		}).orElseGet( () -> new ResponseEntity("Album não encontrado na base de dados", HttpStatus.BAD_REQUEST));
 	}
 	
 	@DeleteMapping("{id}")
@@ -73,7 +73,7 @@ public class FilmeResource {
 				return ResponseEntity.badRequest().body(e.getMessage());
 			}
 
-		}).orElseGet( () -> new ResponseEntity("Filme não encontrado na base de dados", HttpStatus.BAD_REQUEST));
+		}).orElseGet( () -> new ResponseEntity("Album não encontrado na base de dados", HttpStatus.BAD_REQUEST));
 
 	}	
 	
@@ -84,7 +84,7 @@ public class FilmeResource {
 			@RequestParam("usuario") Long idUsuario
 			) {
 
-		Filme filtro = new Filme() ;
+		Album filtro = new Album() ;
 		filtro.setDescricao(descricao);
 		filtro.setTitulo(titulo);
 		
@@ -96,28 +96,28 @@ public class FilmeResource {
 			filtro.setUsuario(usuario.get());
 		}
 
-		List<Filme> filmes = service.buscar(filtro);
+		List<Album> albuns = service.buscar(filtro);
 
-		return ResponseEntity.ok(filmes);
+		return ResponseEntity.ok(albuns);
 	}
 	
 	
-	private Filme converter(FilmeDTO dto) {
-		Filme filme = new Filme();
+	private Album converter(AlbumDTO dto) {
+		Album album = new Album();
 
-		filme.setId(dto.getId());
-		filme.setDescricao(dto.getDescricao());
-		filme.setAvaliacao(dto.getAvaliacao());
-		filme.setFoto(dto.getFoto());
-		filme.setTitulo(dto.getTitulo());
+		album.setId(dto.getId());
+		album.setDescricao(dto.getDescricao());
+		album.setAvaliacao(dto.getAvaliacao());
+		album.setFoto(dto.getFoto());
+		album.setTitulo(dto.getTitulo());
 		
 		Usuario usuario = usuarioService
 				.obterPorId(dto.getUsuario())
 				.orElseThrow( () -> new RegraNegocioException("Usuário não encontrado para o Id informado"));
 
-		filme.setUsuario(usuario);
+		album.setUsuario(usuario);
 
-		return filme;
+		return album;
 	}
 
 }
