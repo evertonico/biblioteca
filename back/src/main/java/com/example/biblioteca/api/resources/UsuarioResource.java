@@ -62,7 +62,7 @@ public class UsuarioResource {
 		return ResponseEntity.ok(usuario);
 	}	
 	
-	@GetMapping("/exists/{login}")
+	@GetMapping("/buscaPorId/{login}")
 	public ResponseEntity buscaPorID(@PathVariable ("id") Long id) {
 		Optional<Usuario> usuario = usuarioService.obterPorId(id);
 		
