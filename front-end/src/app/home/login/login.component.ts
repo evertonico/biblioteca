@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   usuario='';
   senha='';
   loginForm!: FormGroup;
-  socialUser: SocialUser = new SocialUser;
+  socialUser!: SocialUser;
   isLoggedin: boolean = false;
 
   constructor(private authService: AutenticacaoService, private router:Router,
@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
     novoUsuarioComponent.cadastrarUsuarioPorRedeSocial(novoUsuario)
     this.usuario = this.socialUser.email
     this.senha = "1"
+    this.login()
   }
 
   signOut(): void {

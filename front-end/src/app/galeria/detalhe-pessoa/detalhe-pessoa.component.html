@@ -1,0 +1,15 @@
+<div class="bg-white border" *ngIf="pessoa$ | async as pessoa">
+  <div class="row">
+    <div class="col-lg-8">
+      <app-card
+        [url]="pessoa.url"
+        [descricao]="pessoa.description">
+      </app-card>
+    </div>
+    <div class="col-lg-4">
+        <small>
+          <p class="text-left break-word">{{pessoa.description}}</p>
+        </small>
+    </div>
+  </div>
+</div>
