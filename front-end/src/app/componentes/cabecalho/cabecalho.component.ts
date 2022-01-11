@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { UsuarioService } from './../../autenticacao/usuario/usuario.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './cabecalho.component.html',
   styleUrls: ['./cabecalho.component.css']
 })
-export class CabecalhoComponent implements OnInit {
+export class CabecalhoComponent{
+  user$ = this.usuarioService.retornaUsuario();
 
-  constructor() { }
+  constructor(private usuarioService:UsuarioService, private router:Router) { }
 
-  ngOnInit(): void {
+  logout(){
+    this.usuarioService.logout();
+    this.router.navigate(['']);
   }
 
 }
