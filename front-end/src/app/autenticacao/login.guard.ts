@@ -13,10 +13,10 @@ export class LoginGuard implements CanLoad {
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (!this.usuarioService.estalogado()){
-        this.router.navigate(['/galeria']);
-        return false;
-      }
+      // if (!this.usuarioService.estalogado()){
+      //   this.router.navigate(['galeria']);
+      //   return false;
+      // }
       return true;
   }
 }

@@ -1,3 +1,4 @@
+import { AutenticacaoModule } from './autenticacao/autenticacao.module';
 import { RodapeModule } from './componentes/rodape/rodape.module';
 import { CabecalhoModule } from './componentes/cabecalho/cabecalho.module';
 import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component';
@@ -19,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     CabecalhoModule,
     RodapeModule,
-
+    AutenticacaoModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

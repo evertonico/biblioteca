@@ -15,18 +15,12 @@ export class GaleriaService {
   constructor(private http:HttpClient, private tokenService:TokenService) { }
 
   listaDoUsuario(nomeDoUsuario:string):Observable<Pessoas>{
-    const token = this.tokenService.retornaToken();
-    const headers = new HttpHeaders().append('x-access-token', token);
-    return this.http.get<Pessoas>(`${API}/${nomeDoUsuario}/photos`, {
-      headers:headers,
-    });
+
+    return this.http.get<Pessoas>(`${API}/${nomeDoUsuario}/photos`);
   }
 
   buscaPorID(id:number):Observable<Pessoa>{
-    const token = this.tokenService.retornaToken();
-    const headers = new HttpHeaders().append('x-access-token', token);
-    return this.http.get<Pessoa>(`${API}/photos/${id}`, {
-      headers:headers,
-    });
+
+    return this.http.get<Pessoa>(`${API}/photos/${id}`);
   }
 }
