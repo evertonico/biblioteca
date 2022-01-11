@@ -44,17 +44,23 @@ export class NovoUsuarioComponent implements OnInit {
   }
 
   cadastrar(){
+    const novoUsuario = this.novoUsuarioForm.getRawValue() as NovoUsuario;
 
-
-      const novoUsuario = this.novoUsuarioForm.getRawValue() as NovoUsuario;
-
-      this.novoUsuarioService.cadastraNovoUsuario(novoUsuario).subscribe(
-        () => {
-          this.router.navigate(['']);
-        },(error) => {
-        console.log(error);
-      });
-
-
+    this.novoUsuarioService.cadastraNovoUsuario(novoUsuario).subscribe(
+      () => {
+        this.router.navigate(['']);
+      },(error) => {
+      console.log(error);
+    });
   }
+
+  cadastrarUsuarioPorRedeSocial(usuario: NovoUsuario){
+    this.novoUsuarioService.cadastraNovoUsuario(usuario).subscribe(
+      () => {
+        this.router.navigate(['']);
+      },(error) => {
+      console.log(error);
+    });
+  }
+
 }
