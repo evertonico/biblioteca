@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-quadro',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quadro.component.css']
 })
 export class QuadroComponent implements OnInit {
+
+  @Input() titulo = '';
 
   constructor() { }
 

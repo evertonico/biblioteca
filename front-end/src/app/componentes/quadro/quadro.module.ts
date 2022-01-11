@@ -10,6 +10,7 @@ import { QuadroComponent } from './quadro.component';
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [QuadroComponent],
 })
 export class QuadroModule { }
