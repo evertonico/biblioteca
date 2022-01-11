@@ -5,7 +5,7 @@
 
 <div class="row">
   <div *ngFor="let pessoa of pessoas" class="col-4">
-    <a [routerLink]="['/animais', pessoa.id]">
+    <a [routerLink]="['/galeria', pessoa.id]">
       <app-quadro>
         <app-card
           [url]="pessoa.url"
