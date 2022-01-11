@@ -12,4 +12,8 @@ export class NovoUsuarioService {
   cadastraNovoUsuario(novoUsaurio:NovoUsuario){
     return this.http.post('http://localhost:3000/user/signup', novoUsaurio);
   }
+
+  verificaUsuarioExistente(nomeUsuario: string) {
+    return this.http.get(`http://localhost:3000/user/exists/${nomeUsuario}`)
+  }
 }
