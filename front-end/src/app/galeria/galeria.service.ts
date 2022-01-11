@@ -18,7 +18,7 @@ export class GaleriaService {
     const token = this.tokenService.retornaToken();
     const headers = new HttpHeaders().append('x-access-token', token);
     return this.http.get<Pessoas>(`${API}/${nomeDoUsuario}/photos`, {
-      headers,
+      headers:headers,
     });
   }
 }

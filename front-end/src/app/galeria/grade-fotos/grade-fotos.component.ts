@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Pessoas } from './../pessoa';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-grade-fotos',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./grade-fotos.component.css']
 })
 export class GradeFotosComponent implements OnInit {
+
+  @Input() pessoas !: Pessoas;
 
   constructor() { }
 
