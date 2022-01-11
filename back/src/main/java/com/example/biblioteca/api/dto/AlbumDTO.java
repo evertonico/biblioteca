@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class FilmeDTO {
+public class AlbumDTO {
 	
 	private Long id;
 	private String titulo;

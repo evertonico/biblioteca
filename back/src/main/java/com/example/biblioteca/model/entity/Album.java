@@ -15,15 +15,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="tb_filme", schema="tria")
+@Table(name="tb_album", schema="tria")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Filme {
+public class Album {
 	
 	@Id
-	@Column(name="id_filme")
+	@Column(name="id_album")
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private Long id;
 	
