@@ -9,6 +9,7 @@ import lombok.Setter;
 @Builder
 public class FilmeDTO {
 	
+	private Long id;
 	private String titulo;
 	private String foto;
 	private String descricao;
