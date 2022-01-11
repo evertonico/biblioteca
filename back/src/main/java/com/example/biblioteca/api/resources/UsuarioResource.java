@@ -62,6 +62,16 @@ public class UsuarioResource {
 		return ResponseEntity.ok(usuario);
 	}	
 	
+	@GetMapping("/exists/{login}")
+	public ResponseEntity buscaPorID(@PathVariable ("id") Long id) {
+		Optional<Usuario> usuario = usuarioService.obterPorId(id);
+		
+		if (!usuario.isPresent()) {
+			return new ResponseEntity(HttpStatus.NOT_FOUND);
+		}
+		
+		return ResponseEntity.ok(usuario);
+	}	
 	
 	private Usuario converter(UsuarioDTO dto) {
 		Usuario usuario = new Usuario();
