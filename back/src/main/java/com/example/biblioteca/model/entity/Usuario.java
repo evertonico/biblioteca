@@ -27,4 +27,20 @@ public class Usuario {
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name="login")
+	private String login;
+	
+	@Column(name="email")
+	private String email;
+	
+	@Column(name="nome")
+	private String nome;
+	
+	@Column(name="senha")
+	@JsonIgnore
+	private String senha;	
+	
+	@Column(name="token")
+	private String token;	
+	
 }
