@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +15,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="filme", schema="biblioteca")
+@Table(name="tb_filme", schema="tria")
 @Data
 @Builder
 @NoArgsConstructor
@@ -21,14 +23,14 @@ import lombok.NoArgsConstructor;
 public class Filme {
 	
 	@Id
-	@Column(name="id")
+	@Column(name="id_filme")
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="titulo")
 	private String titulo;
 	
-	@Column(name="foto")
+	@Column(name="arquivo_foto")
 	private String foto;
 	
 	@Column(name="descricao")
@@ -36,5 +38,9 @@ public class Filme {
 	
 	@Column(name="avaliacao")
 	private String avaliacao;	
+	
+	@ManyToOne
+	@JoinColumn(name="cd_usuario")
+	private Usuario usuario;
 	
 }

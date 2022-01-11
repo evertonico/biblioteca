@@ -1,6 +1,7 @@
 package com.example.biblioteca.api.resources;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.biblioteca.api.dto.FilmeDTO;
 import com.example.biblioteca.exceptions.RegraNegocioException;
 import com.example.biblioteca.model.entity.Filme;
+import com.example.biblioteca.model.entity.Usuario;
 import com.example.biblioteca.service.FilmeService;
+import com.example.biblioteca.service.UsuarioService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,14 +30,11 @@ import lombok.RequiredArgsConstructor;
 public class FilmeResource {
 	
 	private final FilmeService service;
+	private final UsuarioService usuarioService;
 	
 	@PostMapping
 	public ResponseEntity salvar(@RequestBody FilmeDTO dto) {
-		Filme filme = Filme.builder()
-				.titulo(dto.getTitulo())
-				.foto(dto.getFoto())
-				.descricao(dto.getDescricao())
-				.avaliacao(dto.getAvaliacao()).build();
+		Filme filme = converter(dto);
 		
 		try {
 			Filme filmeSalvo = service.salvarFilme(filme);
@@ -80,12 +80,21 @@ public class FilmeResource {
 	@GetMapping
 	public ResponseEntity buscar (
 			@RequestParam(value = "descricao", required = false) String descricao,
-			@RequestParam(value = "titulo", required = false) String titulo
+			@RequestParam(value = "titulo", required = false) String titulo,
+			@RequestParam("usuario") Long idUsuario
 			) {
 
 		Filme filtro = new Filme() ;
 		filtro.setDescricao(descricao);
 		filtro.setTitulo(titulo);
+		
+		Optional <Usuario> usuario = usuarioService.obterPorId(idUsuario);
+
+		if (!usuario.isPresent() ) {
+			return ResponseEntity.badRequest().body("Não foi possível realizar a consulta. Usuário não encontrado");
+		} else {
+			filtro.setUsuario(usuario.get());
+		}
 
 		List<Filme> lancamentos = service.buscar(filtro);
 
@@ -101,6 +110,12 @@ public class FilmeResource {
 		filme.setAvaliacao(dto.getAvaliacao());
 		filme.setFoto(dto.getFoto());
 		filme.setTitulo(dto.getTitulo());
+		
+		Usuario usuario = usuarioService
+				.obterPorId(dto.getUsuario())
+				.orElseThrow( () -> new RegraNegocioException("Usuário não encontrado para o Id informado"));
+
+		filme.setUsuario(usuario);
 
 		return filme;
 	}

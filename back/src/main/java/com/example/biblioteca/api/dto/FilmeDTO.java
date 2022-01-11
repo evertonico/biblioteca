@@ -14,5 +14,6 @@ public class FilmeDTO {
 	private String foto;
 	private String descricao;
 	private String avaliacao;
+	private Long usuario;
 
 }
