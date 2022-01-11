@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { GaleriaRoutingModule } from './galeria-routing.module';
 import { ListaComponent } from './lista/lista.component';
+import { CardComponent } from './card/card.component';
 
 
 @NgModule({
   declarations: [
-    ListaComponent
+    ListaComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
